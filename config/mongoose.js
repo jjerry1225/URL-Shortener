@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-mongoose.set("strictQuery", true);
+mongoose.set('strictQuery', true)
 
 // setting mongoose => connect to mongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -23,3 +23,4 @@ db.on("error", () => {
 db.once("open", () => {
   console.log("mongodb connected!");
 });
+
