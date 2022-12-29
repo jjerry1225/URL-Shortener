@@ -1,0 +1,24 @@
+{{#if shortURL}}
+<div class="container">
+  <h1>Success! Please use this link:</h1>
+  <span id="newURL">http://localhost:3000/{{shortURL}}</span>
+  <button onclick="copy()">COPY</button>
+
+  <script>
+    function copy() { 
+      const newURL = document.getElementById("newURL").innerText
+      navigator.clipboard.writeText(newURL) 
+        .then(() => {alert("Copied !")})
+        .catch(error => console.log("Something went wrong", error)) 
+    }
+  </script>
+  
+{{else}}
+  <form action="/" method="POST">
+    <div class="container">
+      <input type="url" name="url" placeholder="Input URL here" required />
+      <button>Shorten</button>
+    </div>
+  </form>
+</div>
+{{/if}}
