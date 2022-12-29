@@ -1,8 +1,10 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
+const bodyParser = require("body-parser");
 const PORT = 3000;
 
-const URL = require("./models/url");
+// 引用路由器，路徑設定為 /routes 就會自動去尋找目錄下叫做 index 的檔案。
+const routes = require("./routes")
 
 const app = express();
 
@@ -13,10 +15,11 @@ require("./config/mongoose");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+// 套用body-parser
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // setting route
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.use(routes)
 
 // start and listen server
 app.listen(PORT, () => {

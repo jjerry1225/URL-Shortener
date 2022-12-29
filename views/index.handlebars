@@ -12,13 +12,13 @@
         .catch(error => console.log("Something went wrong", error)) 
     }
   </script>
-  
+</div>
+
 {{else}}
   <form action="/" method="POST">
     <div class="container">
       <input type="url" name="url" placeholder="Input URL here" required />
-      <button>Shorten</button>
+      <button type="submit">Shorten</button>
     </div>
   </form>
-</div>
 {{/if}}
