@@ -40,5 +40,18 @@ router.post("/", (req, res) => {
     .catch((error) => console.log(error));
 });
 
+router.get("/:shortURL", (req, res) => {
+  const shortName = req.params.shortURL;
+
+  URL.findOne({ shortURL: shortName })
+    .then((data) => {
+      if (!data) {
+        return res.render("error", { shortName }); 
+      }
+      res.redirect(data.originalURL);
+    })
+    .catch((error) => console.log(error));
+});
+
 // 匯出路由模組
 module.exports = router;
