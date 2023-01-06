@@ -6,19 +6,7 @@ const router = express.Router();
 const URL = require("../../models/url");
 
 // 製造shortURL的function
-const elements =
-  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-function shortenURL() {
-  let result = "";
-
-  for (let i = 0; i < 5; i++) {
-    let letter = elements[Math.floor(Math.random() * elements.length)];
-    result += letter;
-  }
-
-  return result;
-}
+const shortenURL = require("../../shortenURL")
 
 // setting route
 router.get("/", (req, res) => {
