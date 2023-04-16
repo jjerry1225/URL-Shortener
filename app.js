@@ -1,7 +1,11 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
-const PORT = 3000;
+const PORT = process.env.PORT;
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 // 引用路由器，路徑設定為 /routes 就會自動去尋找目錄下叫做 index 的檔案。
 const routes = require("./routes")
