@@ -17,6 +17,13 @@ router.post("/", (req, res) => {
   if (!req.body.url) {
     return res.redirect("/");
   }
+  
+  let url = ''
+  if (process.env.NODE_ENV !== 'production') {
+    url = 'http://localhost:3000/'
+  } else {
+    url = 'https://guarded-chamber-24737.herokuapp.com/'
+  }
 
   let shortURL = shortenURL();
 
@@ -24,7 +31,7 @@ router.post("/", (req, res) => {
     .then((data) =>
       data ? data : URL.create({ shortURL, originalURL: req.body.url })
     )
-    .then((data) => res.render("index", { shortURL: data.shortURL }))
+    .then((data) => res.render("index", { shortURL: data.shortURL, url }))
     .catch((error) => console.log(error));
 });
 
